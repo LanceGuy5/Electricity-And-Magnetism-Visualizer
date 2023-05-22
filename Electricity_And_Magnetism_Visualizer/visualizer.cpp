@@ -1,4 +1,6 @@
 #include "visualizer.h"
+
+#include <SDL_ttf.h>
 #include <stdio.h>
 #include <cassert>
 
@@ -43,6 +45,11 @@ bool Visualizer::init() {
 		success = false;
 	}
 
+	if (TTF_Init() == -1) {
+		printf("SDL_ttf could not initialize! TTF_Error: %s\n", TTF_GetError());
+		success = false;
+	}
+
 	//Instantiating our window -> could add SDL_WINDOW_FULLSCREEN_DESKTOP as last arg
 	this->_window = SDL_CreateWindow(this->_title, this->_x, this->_y, this->_width, this->_height, 0);
 
@@ -77,6 +84,7 @@ bool Visualizer::init() {
 void Visualizer::close() {
 	SDL_DestroyRenderer(this->_renderer);
 	SDL_DestroyWindow(this->_window);
+	TTF_Quit();
 	SDL_Quit();
 }
 
