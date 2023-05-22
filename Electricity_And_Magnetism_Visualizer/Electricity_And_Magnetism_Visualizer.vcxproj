@@ -142,10 +142,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="drawer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="visualizer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="drawer.h" />
     <ClInclude Include="visualizer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

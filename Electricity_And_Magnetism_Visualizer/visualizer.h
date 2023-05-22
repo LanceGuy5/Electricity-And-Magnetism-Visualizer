@@ -2,6 +2,12 @@
 
 #include <SDL.h>
 
+//Representation of every possible state that the game can be in
+enum class game_state
+{
+	MENU,
+};
+
 class Visualizer
 {
 public:
@@ -18,13 +24,28 @@ public:
 	//Exit method for program
 	void close();
 
+	//Method to get certain state (for rendering and ticking purposes)
+	game_state get_curr_state();
+
+	//For setting the state of the game
+	void set_curr_state(game_state state);
+
+	//Method to get the renderer object
+	SDL_Renderer* get_renderer();
+
+	//Method to get the status after init
+	bool get_status();
+
 private:
 	//Only want this to be used by in-class methods
 	bool init();
 protected:
 	SDL_Window* _window;
 	SDL_Surface* _screenSurface{};
+	SDL_Renderer* _renderer{};
 	const char* _title{};
 	int _x{}, _y{}, _width{}, _height{};
+	game_state _currState;
+	bool _status{};
 };
 

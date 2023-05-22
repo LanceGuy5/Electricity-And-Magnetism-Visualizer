@@ -12,8 +12,9 @@ Visualizer::Visualizer(const char* title, int x, int y, int w, int h) {
 	//Fail-safe
 	this->_window = NULL;
 	this->_screenSurface = NULL;
+	this->_renderer = NULL;
 
-	init();
+	this->_status = init();
 }
 
 Visualizer::Visualizer(const char* title, int w, int h) {
@@ -26,8 +27,9 @@ Visualizer::Visualizer(const char* title, int w, int h) {
 	//Fail-safe
 	this->_window = NULL;
 	this->_screenSurface = NULL;
+	this->_renderer = NULL;
 
-	init();
+	this->_status = init();
 }
 
 bool Visualizer::init() {
@@ -50,20 +52,32 @@ bool Visualizer::init() {
 		success = false;
 	}
 
+	//TODO Do I want to use screen surface or renderer?
+	// 
 	//Get surface of window
 	this->_screenSurface = SDL_GetWindowSurface(_window);
-
 	//Give the surface a background
-	SDL_FillRect(_screenSurface, NULL, SDL_MapRGB(_screenSurface->format, 0xFF, 0xFF, 0xFF));
-
+	//SDL_FillRect(_screenSurface, NULL, SDL_MapRGB(_screenSurface->format, 0xFF, 0xFF, 0xFF));
 	//Update the surface
 	SDL_UpdateWindowSurface(_window);
+
+	//Renderer code here
+	this->_renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
+	if (this->_renderer == NULL) {
+		printf("Renderer was not instantiated properly. SDL_Error: %s\n", SDL_GetError());
+		success = false;
+	}
+
+	set_curr_state(game_state::MENU);
 
 	return success;
 }
 
+//See if this can be added to destructor somehow or just merged into destructor?
 void Visualizer::close() {
-
+	SDL_DestroyRenderer(this->_renderer);
+	SDL_DestroyWindow(this->_window);
+	SDL_Quit();
 }
 
 SDL_Window* Visualizer::get_window() {
@@ -74,4 +88,21 @@ SDL_Window* Visualizer::get_window() {
 SDL_Surface* Visualizer::get_screen_surface() {
 	assert(this->_screenSurface);
 	return this->_screenSurface;
+}
+
+game_state Visualizer::get_curr_state() {
+	return this->_currState;
+}
+
+void Visualizer::set_curr_state(game_state state) {
+	this->_currState = state;
+}
+
+SDL_Renderer* Visualizer::get_renderer() {
+	assert(this->_renderer);
+	return this->_renderer;
+}
+
+bool Visualizer::get_status() {
+	return this->_status;
 }

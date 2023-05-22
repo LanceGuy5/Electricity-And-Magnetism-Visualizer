@@ -1,9 +1,12 @@
+//General includes
 #include <stdio.h>
 #include <SDL.h>
 #include <SDL_image.h>
 #include <iostream>
 
+//MY includes :)
 #include "visualizer.h"
+#include "drawer.h"
 
 #define WIDTH 1280
 #define HEIGHT 720
@@ -11,11 +14,10 @@
 int main(int argc, char* argv[]) {
 
 	//Image stuff TODO MOVE TO VISUALIZER CLASS
-	//SDL_Renderer* renderer = NULL;
 	//SDL_Texture* img = NULL;
 
 	//More image stuff :)
-	/*renderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
+	/*
 	img = IMG_LoadTexture(renderer, "C:\\Users\\lance\\Desktop\\Prof2.PNG");
 	if (img == nullptr) {
 		std::cout << "IMG_LoadTexture Error: " << SDL_GetError() << "\n";
@@ -27,15 +29,21 @@ int main(int argc, char* argv[]) {
 
 	//Should create everything and successfully initialize everything
 	Visualizer visualizer("Electricity and Magnetism Visualizer", WIDTH, HEIGHT);
+	if (visualizer.get_status() < 1) return 1;
 
+	//Drawer instantiation
+	Drawer drawer(visualizer.get_renderer());
+
+	//Variable to keep track of tick speed
 	Uint32 lastUpdateTime = 0;
 
-	//"Game" loop
+	//Main loop
 	while (1) {
 
 		//Get an SDL_Event and call it e
 		SDL_Event e;
 
+		//If an event is qeued, add it to e and check conditions:
 		if (SDL_PollEvent(&e)) {
 
 			//Check to see if the event was to quit -> break loop and return out of program
@@ -48,13 +56,7 @@ int main(int argc, char* argv[]) {
 				break;
 			}
 
-			//Re-rendering screen every 30 ticks
-			/*if (lastUpdateTime + 30 < SDL_GetTicks) {
-				lastUpdateTime = SDL_GetTicks();
-				SDL_RenderClear(renderer);
-				SDL_RenderCopy(renderer, img, NULL, &texr);
-				SDL_RenderPresent(renderer);
-			}*/
+			drawer.draw();
 		}
 	}
 
