@@ -3,44 +3,16 @@
 #include <SDL_image.h>
 #include <iostream>
 
+#include "visualizer.h"
+
 #define WIDTH 1280
 #define HEIGHT 720
 
 int main(int argc, char* argv[]) {
 
-	//Window we will be rendering to
-	SDL_Window* win = NULL;
-
-	//Surface contained by the window
-	SDL_Surface* screenSurface = NULL;
-
-	//Image stuff :)
+	//Image stuff TODO MOVE TO VISUALIZER CLASS
 	//SDL_Renderer* renderer = NULL;
 	//SDL_Texture* img = NULL;
-
-	//Initializes SDL
-	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-		printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
-		return 1;
-	}
-
-	//Instantiating our window -> could add SDL_WINDOW_FULLSCREEN_DESKTOP as last arg
-	win = SDL_CreateWindow("Electricity and Magnetism Visualizer", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, 0); 
-
-	//Check to make sure window was properly instantiated
-	if (win == NULL) {
-		printf("Window could not successfully be opened. SDL_Error: %s\n", SDL_GetError());
-		return 1;
-	}
-
-	//Get surface of window for purposes :()
-	screenSurface = SDL_GetWindowSurface(win);
-
-	//Give the surface a background
-	SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, 0xFF, 0xFF, 0xFF));
-
-	//Update the surface
-	SDL_UpdateWindowSurface(win);
 
 	//More image stuff :)
 	/*renderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
@@ -52,6 +24,9 @@ int main(int argc, char* argv[]) {
 	int w, h;
 	SDL_QueryTexture(img, NULL, NULL, &w, &h);
 	SDL_Rect texr; texr.x = 0; texr.y = 0; texr.w = w; texr.h = h;*/
+
+	//Should create everything and successfully initialize everything
+	Visualizer visualizer("Electricity and Magnetism Visualizer", WIDTH, HEIGHT);
 
 	Uint32 lastUpdateTime = 0;
 
@@ -83,15 +58,11 @@ int main(int argc, char* argv[]) {
 		}
 	}
 
+	//TODO More to move to visualizer class
 	/*SDL_DestroyTexture(img);
 	SDL_DestroyRenderer(renderer);*/
-	
-	//Destroying window at end of loop
-	SDL_DestroyWindow(win);
 
-	//Quitting SDL at end of loop
-	SDL_Quit();
-
+	visualizer.close();
 	//Returning out of program successfully
 	return 0;
 

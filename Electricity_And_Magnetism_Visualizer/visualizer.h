@@ -1,0 +1,30 @@
+#pragma once
+
+#include <SDL.h>
+
+class Visualizer
+{
+public:
+	Visualizer(const char* title, int x, int y, int width, int height); //Constructor
+	Visualizer(const char* title, int width, int height); //Another constructor that defualts to screen center
+	~Visualizer() = default; //Might want to check about this?
+
+	//Method to return window produced by constructor!
+	SDL_Window* get_window();
+
+	//Method to return surface given by window (assuming one exists)
+	SDL_Surface* get_screen_surface();
+
+	//Exit method for program
+	void close();
+
+private:
+	//Only want this to be used by in-class methods
+	bool init();
+protected:
+	SDL_Window* _window;
+	SDL_Surface* _screenSurface{};
+	const char* _title{};
+	int _x{}, _y{}, _width{}, _height{};
+};
+
