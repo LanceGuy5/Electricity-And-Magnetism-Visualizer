@@ -4,8 +4,9 @@
 
 constexpr int TITLESCREEN_FONT_SIZE = 28;
 
-Drawer::Drawer(SDL_Renderer* renderer) {
-	this->_renderer = renderer;
+Drawer::Drawer(Visualizer* visualizer) {
+	this->_visualizer = visualizer;
+	this->_renderer = _visualizer->get_renderer();
 	this->_title_font = NULL;
 }
 
@@ -23,6 +24,8 @@ bool Drawer::init_media() {
         printf("Failed to load font title! SDL_ttf Error: %s\n", TTF_GetError());
         success = false;
     }
+
+	return success;
 }
 
 void Drawer::draw() {
@@ -30,15 +33,22 @@ void Drawer::draw() {
 	//Make sure the renderer is empty at the beginning of each render method
 	SDL_RenderClear(_renderer);
 
+	//Making a button
+	SDL_Rect rect;
+	rect.x = 100, rect.y = 100, rect.w = 300, rect.h = 50;
+	SDL_SetRenderDrawColor(_renderer, 255, 255, 255, 255);
+	SDL_RenderDrawRect(_renderer, &rect);
+
 	//Background
-	SDL_SetRenderDrawColor(_renderer, 100, 149, 237, 255);
+	SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255);
 
 	// Show the renderer contents
 	SDL_RenderPresent(_renderer);
+
 }
 
 SDL_Texture* Drawer::render_text(const char* text_to_render, SDL_Color render_color) {
-
+	return NULL; //TODO FIX
 }
 
 TTF_Font* Drawer::get_title_font() {

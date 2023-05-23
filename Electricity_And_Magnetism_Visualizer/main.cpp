@@ -29,10 +29,10 @@ int main(int argc, char* argv[]) {
 
 	//Should create everything and successfully initialize everything
 	Visualizer visualizer("Electricity and Magnetism Visualizer", WIDTH, HEIGHT);
-	if (visualizer.get_status() < 1) return 1;
+	if (!visualizer.get_status()) return 1;
 
 	//Drawer instantiation
-	Drawer drawer(visualizer.get_renderer());
+	Drawer drawer(&visualizer);
 
 	//Variable to keep track of tick speed
 	Uint32 lastUpdateTime = 0;
