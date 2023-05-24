@@ -51,7 +51,7 @@ bool Visualizer::init() {
 	}
 
 	//Instantiating our window -> could add SDL_WINDOW_FULLSCREEN_DESKTOP as last arg
-	this->_window = SDL_CreateWindow(this->_title, this->_x, this->_y, this->_width, this->_height, 0);
+	this->_window = SDL_CreateWindow(this->_title, this->_x, this->_y, this->_width, this->_height, SDL_WINDOW_RESIZABLE);
 
 	//Check to make sure window was properly instantiated
 	if (_window == NULL) {
@@ -75,7 +75,7 @@ bool Visualizer::init() {
 		success = false;
 	}
 
-	set_curr_state(game_state::MENU);
+	set_curr_state(program_state::MENU);
 
 	return success;
 }
@@ -98,11 +98,11 @@ SDL_Surface* Visualizer::get_screen_surface() {
 	return this->_screenSurface;
 }
 
-game_state Visualizer::get_curr_state() {
+program_state Visualizer::get_curr_state() {
 	return this->_currState;
 }
 
-void Visualizer::set_curr_state(game_state state) {
+void Visualizer::set_curr_state(program_state state) {
 	this->_currState = state;
 }
 
@@ -113,4 +113,12 @@ SDL_Renderer* Visualizer::get_renderer() {
 
 bool Visualizer::get_status() {
 	return this->_status;
+}
+
+int Visualizer::get_width() {
+	return SDL_GetWindowSurface(_window)->w;
+}
+
+int Visualizer::get_height() {
+	return SDL_GetWindowSurface(_window)->h;
 }

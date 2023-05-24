@@ -16,6 +16,9 @@
     <Filter Include="Source Files\drawing">
       <UniqueIdentifier>{e4a565ca-7f77-435c-8cdf-76817a901dad}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\drawing\menu">
+      <UniqueIdentifier>{ec086a13-0302-4344-a744-d214389559cd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -27,6 +30,9 @@
     <ClCompile Include="drawer.cpp">
       <Filter>Source Files\drawing</Filter>
     </ClCompile>
+    <ClCompile Include="menu.cpp">
+      <Filter>Source Files\drawing\menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="visualizer.h">
@@ -35,5 +41,16 @@
     <ClInclude Include="drawer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="menu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="screen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="D:\FontLibraries\roboto\Roboto-Regular.ttf">
+      <Filter>Resource Files</Filter>
+    </Font>
   </ItemGroup>
 </Project>

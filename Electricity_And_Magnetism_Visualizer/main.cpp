@@ -7,9 +7,10 @@
 //MY includes :)
 #include "visualizer.h"
 #include "drawer.h"
+#include "menu.h"
 
-#define WIDTH 1280
-#define HEIGHT 720
+#define WIDTH 800 //1280
+#define HEIGHT 608 //720
 
 int main(int argc, char* argv[]) {
 
@@ -33,6 +34,10 @@ int main(int argc, char* argv[]) {
 
 	//Drawer instantiation
 	Drawer drawer(&visualizer);
+
+	//Screens/adding to menu here
+	Menu menu(&visualizer);
+	drawer.add_menu(&menu);
 
 	//Variable to keep track of tick speed
 	Uint32 lastUpdateTime = 0;

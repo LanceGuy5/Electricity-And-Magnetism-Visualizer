@@ -3,7 +3,7 @@
 #include <SDL.h>
 
 //Representation of every possible state that the game can be in
-enum class game_state
+enum class program_state
 {
 	MENU,
 };
@@ -25,16 +25,20 @@ public:
 	void close();
 
 	//Method to get certain state (for rendering and ticking purposes)
-	game_state get_curr_state();
+	program_state get_curr_state();
 
 	//For setting the state of the game
-	void set_curr_state(game_state state);
+	void set_curr_state(program_state state);
 
 	//Method to get the renderer object
 	SDL_Renderer* get_renderer();
 
 	//Method to get the status after init
 	bool get_status();
+
+	//Methods to get the width and height of the window
+	int get_width();
+	int get_height();
 
 private:
 	//Only want this to be used by in-class methods
@@ -45,7 +49,7 @@ protected:
 	SDL_Renderer* _renderer{};
 	const char* _title{};
 	int _x{}, _y{}, _width{}, _height{};
-	game_state _currState;
+	program_state _currState;
 	bool _status{};
 };
 

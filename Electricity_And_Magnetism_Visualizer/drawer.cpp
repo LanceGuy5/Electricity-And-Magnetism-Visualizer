@@ -1,29 +1,19 @@
 #include "drawer.h"
 
 #include <stdio.h>
-
-constexpr int TITLESCREEN_FONT_SIZE = 28;
+#include <cassert>
 
 Drawer::Drawer(Visualizer* visualizer) {
 	this->_visualizer = visualizer;
 	this->_renderer = _visualizer->get_renderer();
-	this->_title_font = NULL;
 }
 
 Drawer::~Drawer() {
-	TTF_CloseFont(this->_title_font);
 }
 
+//TODO Maybe depricate?
 bool Drawer::init_media() {
     bool success = true;
-
-    //Open the title font
-    this->_title_font = TTF_OpenFont("D:\\FontLibraries\\roboto\\Roboto - Regular.ttf", TITLESCREEN_FONT_SIZE);
-    if (_title_font == NULL)
-    {
-        printf("Failed to load font title! SDL_ttf Error: %s\n", TTF_GetError());
-        success = false;
-    }
 
 	return success;
 }
@@ -33,11 +23,10 @@ void Drawer::draw() {
 	//Make sure the renderer is empty at the beginning of each render method
 	SDL_RenderClear(_renderer);
 
-	//Making a button
-	SDL_Rect rect;
-	rect.x = 100, rect.y = 100, rect.w = 300, rect.h = 50;
-	SDL_SetRenderDrawColor(_renderer, 255, 255, 255, 255);
-	SDL_RenderDrawRect(_renderer, &rect);
+	if (_visualizer->get_curr_state() == program_state::MENU) {
+		assert(this->_menu);
+		_menu->render();
+	}
 
 	//Background
 	SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255);
@@ -47,10 +36,26 @@ void Drawer::draw() {
 
 }
 
-SDL_Texture* Drawer::render_text(const char* text_to_render, SDL_Color render_color) {
-	return NULL; //TODO FIX
+SDL_Texture* Drawer::render_text(SDL_Renderer* _renderer, std::string text_to_render, SDL_Color render_color, TTF_Font* font) {
+	SDL_Surface* text_element = TTF_RenderText_Solid(font, text_to_render.c_str(), render_color);
+	if (text_element == NULL) {
+		printf("Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError());
+		return NULL;
+	}
+	else {
+		SDL_Texture* texture = SDL_CreateTextureFromSurface(_renderer, text_element);
+		SDL_FreeSurface(text_element);
+		if (texture == NULL) {
+			printf("Unable to create texture from renderer text! SDL Error: %s\n", SDL_GetError());
+			return NULL;
+		}
+		else {
+			return texture;
+		}
+		
+	}
 }
 
-TTF_Font* Drawer::get_title_font() {
-    return this->_title_font;
+void Drawer::add_menu(Menu* menu) {
+	this->_menu = menu;
 }
