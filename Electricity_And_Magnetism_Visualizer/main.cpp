@@ -61,15 +61,18 @@ int main(int argc, char* argv[]) {
 				break;
 			}
 
-			drawer.draw();
+			//Here we want to feed the data from the SDL_Event into a "mouse manager"
 		}
+
+		drawer.draw();
+
 	}
 
 	//TODO More to move to visualizer class
 	/*SDL_DestroyTexture(img);
 	SDL_DestroyRenderer(renderer);*/
 
-	visualizer.close();
+	visualizer.~Visualizer();
 	//Returning out of program successfully
 	return 0;
 

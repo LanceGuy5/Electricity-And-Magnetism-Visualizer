@@ -34,6 +34,13 @@ Visualizer::Visualizer(const char* title, int w, int h) {
 	this->_status = init();
 }
 
+Visualizer::~Visualizer() {
+	SDL_DestroyRenderer(this->_renderer);
+	SDL_DestroyWindow(this->_window);
+	TTF_Quit();
+	SDL_Quit();
+}
+
 bool Visualizer::init() {
 
 	//Success flag
@@ -80,12 +87,8 @@ bool Visualizer::init() {
 	return success;
 }
 
-//See if this can be added to destructor somehow or just merged into destructor?
-void Visualizer::close() {
-	SDL_DestroyRenderer(this->_renderer);
-	SDL_DestroyWindow(this->_window);
-	TTF_Quit();
-	SDL_Quit();
+void Visualizer::tick() {
+	//All mouse management stuff goes in here
 }
 
 SDL_Window* Visualizer::get_window() {

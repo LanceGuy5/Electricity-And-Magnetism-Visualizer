@@ -13,16 +13,13 @@ class Visualizer
 public:
 	Visualizer(const char* title, int x, int y, int width, int height); //Constructor
 	Visualizer(const char* title, int width, int height); //Another constructor that defualts to screen center
-	~Visualizer() = default; //Might want to check about this?
+	~Visualizer(); //Might want to check about this?
 
 	//Method to return window produced by constructor!
 	SDL_Window* get_window();
 
 	//Method to return surface given by window (assuming one exists)
 	SDL_Surface* get_screen_surface();
-
-	//Exit method for program
-	void close();
 
 	//Method to get certain state (for rendering and ticking purposes)
 	program_state get_curr_state();
@@ -39,6 +36,9 @@ public:
 	//Methods to get the width and height of the window
 	int get_width();
 	int get_height();
+
+	//Method to tick and handle different events from the PollEvent thing
+	void tick();
 
 private:
 	//Only want this to be used by in-class methods

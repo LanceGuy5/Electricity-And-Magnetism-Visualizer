@@ -6,6 +6,7 @@
 Drawer::Drawer(Visualizer* visualizer) {
 	this->_visualizer = visualizer;
 	this->_renderer = _visualizer->get_renderer();
+	this->_menu = NULL;
 }
 
 Drawer::~Drawer() {
