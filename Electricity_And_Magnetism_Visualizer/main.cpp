@@ -85,7 +85,7 @@ int main(int argc, char* argv[]) {
 	/*SDL_DestroyTexture(img);
 	SDL_DestroyRenderer(renderer);*/
 
-	visualizer.close();
+	visualizer.~Visualizer();
 	//Returning out of program successfully
 	return 0;
 
