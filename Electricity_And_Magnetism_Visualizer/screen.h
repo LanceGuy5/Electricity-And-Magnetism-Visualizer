@@ -8,6 +8,7 @@ public:
 	//Each screen has a render method that is called when its visualizer state is achieved
 	virtual void render() = 0;
 private:
-	
+	bool init();
+	bool _successful_init;
 };
 

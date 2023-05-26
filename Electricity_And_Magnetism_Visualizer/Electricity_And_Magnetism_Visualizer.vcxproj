@@ -116,12 +116,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\CppLibraries\SDL2-2.26.5\include;D:\CppLibraries\SDL2_image-2.6.3\include;D:\CppLibraries\SDL2_ttf-2.20.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\CppLibraries\SDL2-2.26.5\include;C:\CppLibraries\SDL2_image-2.6.3\include;C:\CppLibraries\SDL2_ttf-2.20.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\CppLibraries\SDL2_ttf-2.20.2\lib\x64;D:\CppLibraries\SDL2_image-2.6.3\lib\x64;D:\CppLibraries\SDL2-2.26.5\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\CppLibraries\SDL2_ttf-2.20.2\lib\x64;C:\CppLibraries\SDL2_image-2.6.3\lib\x64;C:\CppLibraries\SDL2-2.26.5\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -143,14 +143,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="drawer.cpp" />
+    <ClCompile Include="eventManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menu.cpp" />
+    <ClCompile Include="simulationsMenu.cpp" />
     <ClCompile Include="visualizer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="drawer.h" />
+    <ClInclude Include="eventManager.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="screen.h" />
+    <ClInclude Include="simulationsMenu.h" />
     <ClInclude Include="visualizer.h" />
   </ItemGroup>
   <ItemGroup>

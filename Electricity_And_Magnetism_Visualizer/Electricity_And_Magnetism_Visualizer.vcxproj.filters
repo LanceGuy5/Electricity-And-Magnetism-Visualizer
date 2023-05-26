@@ -19,6 +19,9 @@
     <Filter Include="Source Files\drawing\menu">
       <UniqueIdentifier>{ec086a13-0302-4344-a744-d214389559cd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\events">
+      <UniqueIdentifier>{fe1a8af2-1b7c-4970-b2b8-2feb80fcae07}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -33,6 +36,12 @@
     <ClCompile Include="menu.cpp">
       <Filter>Source Files\drawing\menu</Filter>
     </ClCompile>
+    <ClCompile Include="eventManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="simulationsMenu.cpp">
+      <Filter>Source Files\drawing\menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="visualizer.h">
@@ -45,6 +54,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="screen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="eventManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="simulationsMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

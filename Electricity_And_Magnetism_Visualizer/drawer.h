@@ -2,6 +2,7 @@
 
 #include "visualizer.h"
 #include "menu.h"
+#include "simulationsMenu.h"
 
 #include <SDL.h>
 #include <SDL_ttf.h>
@@ -19,8 +20,9 @@ public:
 	//Method that is called every frame that draws to the screen
 	void draw();
 
-	//Method to add Menu
+	//Methods to add screens
 	void add_menu(Menu* menu);
+	void add_sim_menu(SimulationsMenu* sim_menu);
 
 //Static public methods
 public:
@@ -33,5 +35,6 @@ private:
 protected:
 	SDL_Renderer* _renderer{};
 	Menu* _menu;
+	SimulationsMenu* _sim_menu;
 };
 

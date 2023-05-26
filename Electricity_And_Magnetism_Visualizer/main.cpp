@@ -8,6 +8,7 @@
 #include "visualizer.h"
 #include "drawer.h"
 #include "menu.h"
+#include "eventManager.h"
 
 #define WIDTH 800 //1280
 #define HEIGHT 608 //720
@@ -35,12 +36,22 @@ int main(int argc, char* argv[]) {
 	//Drawer instantiation
 	Drawer drawer(&visualizer);
 
-	//Screens/adding to menu here
+	//Event handler instantiation
+	EventManager event_manager(&visualizer);
+
+	//Menu instantiation/handling
 	Menu menu(&visualizer);
 	drawer.add_menu(&menu);
+	event_manager.add_menu(&menu);
+
+	//Simulations menu instantiation/handling
+	SimulationsMenu sim_menu(&visualizer);
+	drawer.add_sim_menu(&sim_menu);
+	event_manager.add_sim_menu(&sim_menu);
 
 	//Variable to keep track of tick speed
 	Uint32 lastUpdateTime = 0;
+	bool functional = true;
 
 	//Main loop
 	while (1) {
@@ -49,20 +60,25 @@ int main(int argc, char* argv[]) {
 		SDL_Event e;
 
 		//If an event is qeued, add it to e and check conditions:
-		if (SDL_PollEvent(&e)) {
-
+		while (SDL_PollEvent(&e)) {
 			//Check to see if the event was to quit -> break loop and return out of program
 			if (e.type == SDL_QUIT) {
-				break;
+				functional = false;
 			}
 
 			//Check to see if the event was an escape press -> same quit as above
 			else if (e.type == SDL_KEYUP && e.key.keysym.sym == SDLK_ESCAPE) {
-				break;
+				functional = false;
 			}
-
-			drawer.draw();
+			else {
+				functional = event_manager.event_handler(&e);
+			}
 		}
+
+		if (!functional) break;
+
+		//Render here:
+		drawer.draw();
 	}
 
 	//TODO More to move to visualizer class

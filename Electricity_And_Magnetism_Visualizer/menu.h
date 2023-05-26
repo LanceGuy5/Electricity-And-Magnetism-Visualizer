@@ -3,7 +3,7 @@
 #include "SDL.h"
 #include "SDL_ttf.h"
 
-#include "screen.h";
+#include "screen.h"
 #include "visualizer.h"
 
 class Menu : public Screen
@@ -13,10 +13,14 @@ public:
 	~Menu();
 	//Inherited render method
 	void render();
+
+	//Methods to get certain elements of the menu
+	SDL_Rect get_options_dim();
+	SDL_Rect get_quit_dim();
 private:
 	bool init();
 	bool _successful_init;
-protected:
+
 	Visualizer* _visualizer;
 	SDL_Renderer* _renderer;
 
@@ -27,5 +31,9 @@ protected:
 	//Actual renderer elements
 	SDL_Texture* _menu_title;
 	SDL_Texture* _options_title;
+	SDL_Texture* _quit_title;
+protected:
+	SDL_Rect _options_button_dim;
+	SDL_Rect _quit_button_dim;
 };
 
