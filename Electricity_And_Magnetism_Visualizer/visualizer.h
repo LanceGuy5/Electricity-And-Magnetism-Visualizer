@@ -6,7 +6,8 @@
 enum class program_state
 {
 	MENU,
-	SIMULATIONS_MENU
+	SIMULATIONS_MENU,
+	E_FIELD_SIM
 };
 
 class Visualizer

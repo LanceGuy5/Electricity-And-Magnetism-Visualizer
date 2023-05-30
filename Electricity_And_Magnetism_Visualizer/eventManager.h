@@ -20,6 +20,7 @@ public:
 //All events for each different screen exist here
 private:
 	bool menu_event_handler(SDL_Event* e);
+	bool sim_menu_event_handler(SDL_Event* e);
 	bool click_between(int click, int v1, int v2);
 private:
 	Visualizer* _visualizer;

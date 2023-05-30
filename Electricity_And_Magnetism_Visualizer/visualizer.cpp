@@ -35,6 +35,7 @@ Visualizer::Visualizer(const char* title, int w, int h) {
 }
 
 Visualizer::~Visualizer() {
+	
 	SDL_DestroyRenderer(this->_renderer);
 	SDL_DestroyWindow(this->_window);
 	TTF_Quit();

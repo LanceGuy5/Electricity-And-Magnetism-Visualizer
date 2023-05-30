@@ -12,6 +12,8 @@ Drawer::Drawer(Visualizer* visualizer) {
 }
 
 Drawer::~Drawer() {
+	_menu->~Menu();
+	_sim_menu->~SimulationsMenu();
 }
 
 //TODO Maybe depricate?

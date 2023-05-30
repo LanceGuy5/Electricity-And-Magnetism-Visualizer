@@ -44,20 +44,20 @@ void Menu::render() {
 	//Simulations button label code
 	if (!_button_label_font == NULL) {
 		SDL_Rect options_dim;
-		options_dim.w = _options_button_dim.w - 170, options_dim.h = _options_button_dim.h - 20;
-		options_dim.x = (_visualizer->get_width() / 2) - (options_dim.w / 2), options_dim.y = _options_button_dim.y + 10;
+		options_dim.w = _options_button_dim.w - 130, options_dim.h = 36;
+		options_dim.x = (_visualizer->get_width() / 2) - (options_dim.w / 2), options_dim.y = _options_button_dim.y + 7;
 		SDL_RenderCopy(_renderer, _options_title, NULL, &options_dim);
 	}
 
 	//Making the quit button layout
-	SDL_SetRenderDrawColor(_renderer, 255, 255, 255, 255);
+	SDL_SetRenderDrawColor(_renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 	SDL_RenderDrawRect(_renderer, &_quit_button_dim);
 
 	//Quit button label code
 	if (!_button_label_font == NULL) {
 		SDL_Rect quit_dim;
-		quit_dim.w = _quit_button_dim.w - 250, quit_dim.h = _quit_button_dim.h - 20;
-		quit_dim.x = (_visualizer->get_width() / 2) - (quit_dim.w / 2), quit_dim.y = _quit_button_dim.y + 10;
+		quit_dim.w = _quit_button_dim.w - 234, quit_dim.h = 36;
+		quit_dim.x = (_visualizer->get_width() / 2) - (quit_dim.w / 2), quit_dim.y = _quit_button_dim.y + 7;
 		SDL_RenderCopy(_renderer, _quit_title, NULL, &quit_dim);
 	}
 }
@@ -72,7 +72,7 @@ bool Menu::init() {
 		success = false;
 	}
 
-	//Open the button label - TODO NEEDS CHANGE IN LIBRARY PER COMPUTER
+	//Open the button font - TODO NEEDS CHANGE IN LIBRARY PER COMPUTER
 	this->_button_label_font = TTF_OpenFont(ROBOTO_FONT_LOC, BUTTON_LABEL_FONT_SIZE);
 	if (_button_label_font == NULL) {
 		printf("Failed to load button label font! SDL_ttf Error: %s\n", TTF_GetError());

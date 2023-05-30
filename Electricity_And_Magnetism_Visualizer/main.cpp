@@ -82,11 +82,10 @@ int main(int argc, char* argv[]) {
 	}
 
 	//TODO More to move to visualizer class
-	/*SDL_DestroyTexture(img);
-	SDL_DestroyRenderer(renderer);*/
+	/*SDL_DestroyTexture(img);*/
 
 	visualizer.~Visualizer();
+
 	//Returning out of program successfully
 	return 0;
-
 }
